@@ -8,7 +8,7 @@
 // Function that will return a random value
 function get_RandomValue()
 {
-	return rand(1,10);
+	return rand(1,100);
 }
 
 // Define the possible URLs which the page can be accessed from
