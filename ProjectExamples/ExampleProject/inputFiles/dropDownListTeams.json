@@ -1,0 +1,10 @@
+{
+  "type": "DropDownList",
+  "dropdownOptions": [
+    { "value": "1", "label": "Team Tigers" },
+    { "value": "2", "label": "A - Team" },
+    { "value": "3", "label": "Team CodeCrafters" },
+    { "value": "4", "label": "Team Alpha" },
+  ]
+}
+
