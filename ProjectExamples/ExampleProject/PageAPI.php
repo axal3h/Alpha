@@ -10,44 +10,69 @@ $jsonData = get_file_by_id($_GET["id"]);
 
 
 // -------------- Start paragraph gathering information 
-function getParagraphInfo1() {
-	return readJSONFile("inputFiles/para1.json");
+function getAlphateam1() {
+	return readJSONFile("inputFiles/Alphateam1.json");
 }
 
-function getParagraphInfo2() {
-	return readJSONFile("inputFiles/para2.json");
+function getAlphateam2() {
+	return readJSONFile("inputFiles/Alphateam2.json");
 }
 
-function getParagraphInfo3() {
-	return readJSONFile("inputFiles/para3.json");
+function getTigers1() {
+	return readJSONFile("inputFiles/Tigers1.json");
 }
 
-function getParagraphInfo4() {
-	return readJSONFile("inputFiles/para4.json");
+function getTigers2() {
+	return readJSONFile("inputFiles/Tigers2.json");
 }
 
-function getParagraphInfo5() {
-	return readJSONFile("inputFiles/para5.json");
+function getATeam1() {
+	return readJSONFile("inputFiles/ATeam1.json");
 }
+function getATeam2() {
+	return readJSONFile("inputFiles/ATeam2.json");
+}
+function getCodeCrafters1() {
+	return readJSONFile("inputFiles/CodeCrafters1.json");
+}
+function getCodeCrafters2() {
+	return readJSONFile("inputFiles/CodeCrafters2.json");
+}
+function getInstructor() {
+	return readJSONFile("inputFiles/Instructor.json");
+}
+
 
 
 function getParagraphInformation($rand){
 //$rand = 1;
 	switch ($rand){
 	    case "1":
-	      $jsonData = getParagraphInfo1();
+	      $jsonData = getAlphateam1();
 	      break;
 	    case "2":
-	      $jsonData = getParagraphInfo2();
+	      $jsonData = getAlphateam2();
 	      break;
 	    case "3":
-	      $jsonData = getParagraphInfo3();
+	      $jsonData = getTigers1();
 	      break;
 	    case "4":
-	      $jsonData = getParagraphInfo4();
+	      $jsonData = getTigers2();
 	      break;
 	    case "5":
-	      $jsonData = getParagraphInfo5();
+	      $jsonData = getATeam1();
+	      break;
+            case "6":
+	      $jsonData = getATeam2();
+	      break;
+            case "7":
+	      $jsonData = getCodeCrafters1();
+	      break;
+            case "8":
+	      $jsonData = getCodeCrafters2();
+	      break;
+            case "9":
+	      $jsonData = getInstructor();
 	      break;
 	  }
 }
