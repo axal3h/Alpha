@@ -84,6 +84,10 @@ function getMultChoiceInformation() {
 	return readJSONFile("inputFiles/shortOptions.json");
 }
 
+function getdropDownListStudents() {
+	return readJSONFile("inputFiles/dropDownListStudents.json");
+}
+
 
 
 // If it is a dropdown list, take the random value that is being passed in to randomly determine what the contents of the dropdown list should be. This will help with dynamically creating the page.
@@ -139,7 +143,7 @@ function get_file_by_id($id){
 	$rand = getRandomValue();
  	switch ($id){
     case "dropdown":
-      $jsonData = getDropDownInformation($rand);
+      $jsonData = getdropDownListStudents($rand);
       break;
     case "paragraphInfo":
       $jsonData = getParagraphInformation($rand);
