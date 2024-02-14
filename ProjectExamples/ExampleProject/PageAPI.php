@@ -165,7 +165,9 @@ function getRandomValue(){
 
 // The main function that drives the page
 function get_file_by_id($id){
-	$rand = getRandomValue();
+	//$rand = getRandomValue();
+        $jsonDataSel = $_GET["sel"]; 
+        $rand = $jsonDataSel;  
  	switch ($id){
     case "dropdown":
       $jsonData = getdropDownListStudents($rand);
