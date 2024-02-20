@@ -15,32 +15,11 @@
             'Audi, Tony': 'audi.png'
         };
 
-        function start() {
-            var names = Object.keys(photos);
-            var randomName = names[Math.floor(Math.random() * names.length)];
-            document.getElementById(randomName.replace(/ /g, '') + 'Checkbox').checked = true;
-            displayPhoto(randomName);
-        }
+        window.onload = function() {
+            populateNames();
+        };
 
-        function displayPhoto(selectedName = '') {
-            if (!selectedName) {
-                selectedName = document.querySelector('input[name="name"]:checked').value;
-            }
-            var isChecked = document.getElementById(selectedName.replace(/ /g, '') + 'Checkbox').checked;
-            var imgSrc = photos[selectedName] || 'blank.png'; // Ensure 'blank.png' exists
-            if (isChecked) {
-                document.getElementById('photo').src = imgSrc;
-                document.getElementById('photo').style.display = 'block';
-            } else {
-                document.getElementById('photo').style.display = 'none';
-            }
-        }
-    </script>
-</head>
-<body onload="start()">
-    <form>
-        <!-- Dynamically generated radio buttons and checkboxes for each name -->
-        <script>
+        function populateNames() {
             var names = [
                 'Alabdullatif, Abdullah Abdulrahman S',
                 'Alotaibi, Osama Tarahib A',
@@ -52,13 +31,41 @@
                 'Aldawsari, Mohammed Faisal M',
                 'Audi, Tony'
             ];
+            var form = document.querySelector('form');
             names.forEach(function(name) {
                 var sanitizedId = name.replace(/ /g, '');
-                document.write('<input type="radio" id="' + sanitizedId + '" name="name" value="' + name + '" onclick="displayPhoto()"> ' + name);
-                document.write('<input type="checkbox" id="' + sanitizedId + 'Checkbox" onclick="displayPhoto()"> Show Photo<br>');
+                var radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.id = sanitizedId;
+                radio.name = 'name';
+                radio.value = name;
+                radio.onclick = function() { displayPhoto(name); };
+                
+                var label = document.createElement('label');
+                label.htmlFor = sanitizedId;
+                label.appendChild(document.createTextNode(name));
+
+                var checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = sanitizedId + 'Checkbox';
+                checkbox.onclick = function() { displayPhoto(name); };
+
+                form.appendChild(radio);
+                form.appendChild(label);
+                form.appendChild(checkbox);
+                form.appendChild(document.createElement('br'));
             });
-        </script>
-    </form>
+        }
+
+        function displayPhoto(selectedName) {
+            var imgSrc = photos[selectedName] || 'blank.png';
+            document.getElementById('photo').src = imgSrc;
+            document.getElementById('photo').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <form></form>
     <img id="photo" style="display:none;" alt="Selected Person's Photo">
 </body>
 </html>
