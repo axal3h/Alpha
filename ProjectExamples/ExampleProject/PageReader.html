@@ -1,71 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Interactive Page</title>
-    <script>
-        var photos = {
-            'Alabdullatif, Abdullah Abdulrahman S': 'alabdullatif.png',
-            'Alotaibi, Osama Tarahib A': 'alotaibi.png',
-            'Aljohni, Turki Aboulaziz H': 'aljohni.png',
-            'Gadhi, Ryan Najib H': 'gadhi.png',
-            'Alshahrani, Muslh Sharea W': 'alshahrani.png',
-            'Alzahrani, Mohammed Marouf S': 'alzahrani.png',
-            'Altukhays, Mohammed Abdulaziz M': 'altukhays.png',
-            'Aldawsari, Mohammed Faisal M': 'aldawsari.png',
-            'Audi, Tony': 'audi.png'
-        };
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        populateNamesDropdown();
+    });
 
-        window.onload = function() {
-            populateNames();
-        };
+    function populateNamesDropdown() {
+        fetch('inputFiles/dropDownListStudents.json')
+            .then(response => response.json())
+            .then(data => {
+                const dropdown = document.getElementById('namesDropdown');
+                data.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.name.replace(/ /g, '_'); // Assuming file names use underscores instead of spaces
+                    option.textContent = item.name;
+                    dropdown.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error loading names:', error));
+    }
 
-        function populateNames() {
-            var names = [
-                'Alabdullatif, Abdullah Abdulrahman S',
-                'Alotaibi, Osama Tarahib A',
-                'Aljohni, Turki Aboulaziz H',
-                'Gadhi, Ryan Najib H',
-                'Alshahrani, Muslh Sharea W',
-                'Alzahrani, Mohammed Marouf S',
-                'Altukhays, Mohammed Abdulaziz M',
-                'Aldawsari, Mohammed Faisal M',
-                'Audi, Tony'
-            ];
-            var form = document.querySelector('form');
-            names.forEach(function(name) {
-                var sanitizedId = name.replace(/ /g, '');
-                var radio = document.createElement('input');
-                radio.type = 'radio';
-                radio.id = sanitizedId;
-                radio.name = 'name';
-                radio.value = name;
-                radio.onclick = function() { displayPhoto(name); };
-                
-                var label = document.createElement('label');
-                label.htmlFor = sanitizedId;
-                label.appendChild(document.createTextNode(name));
+    function fetchAndDisplayInfo() {
+        const selectedName = document.getElementById('namesDropdown').value;
+        displayPhoto(selectedName);
+        fetch(`inputFiles/${selectedName}.json`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('teamInfo').textContent = 'Team: ' + data.team;
+            })
+            .catch(error => console.error('Error fetching team information:', error));
+    }
 
-                var checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.id = sanitizedId + 'Checkbox';
-                checkbox.onclick = function() { displayPhoto(name); };
-
-                form.appendChild(radio);
-                form.appendChild(label);
-                form.appendChild(checkbox);
-                form.appendChild(document.createElement('br'));
-            });
-        }
-
-        function displayPhoto(selectedName) {
-            var imgSrc = photos[selectedName] || 'blank.png';
-            document.getElementById('photo').src = imgSrc;
-            document.getElementById('photo').style.display = 'block';
-        }
-    </script>
-</head>
-<body>
-    <form></form>
-    <img id="photo" style="display:none;" alt="Selected Person's Photo">
-</body>
-</html>
+    function displayPhoto(filename) {
+        document.getElementById('photo').src = photos[filename] || 'blank.png';
+        document.getElementById('photo').style.display = 'block';
+    }
+</script>
