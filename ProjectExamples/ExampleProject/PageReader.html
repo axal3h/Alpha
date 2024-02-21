@@ -1,4 +1,5 @@
-@@ -3,99 +3,61 @@
+<html>
+<head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 </head>
 <body>
@@ -9,6 +10,7 @@
 	- Have the items dynamically loaded based on the random number generator. Therefore, everything on the page will be built dynamically.
 	- Add additional elements such as radio buttons etc...
 	- Load everything on the push of a button
+
 -->
 
 
@@ -18,17 +20,12 @@
 
 
 <h4>Random Dropdown information</h4>
-    <select id="sel">
-<h1>SWE Team List API Page</h1>
-<p>This page is constructed using API values. If you select from the dropdown list of team members names, you will notice that the paragraph section changes to show the team name.</p>
-<h4>Team Members Dropdown Information</h4>
     <select id="sel" onchange="loadPageInformation();">
         <option value="">-- Select --</option>
     </select>
 
 
 <h4>Random Paragraph Information</h4>
-<h4>Paragraph Information "Team Names"</h4>
     <p id="msg"></p>
 
 
@@ -36,8 +33,10 @@
 <div>
       <input type="radio" id="contactChoice1" name="contact" value="email" />
       <label for="contactChoice1"><div id=opt1></label>
+
       <input type="radio" id="contactChoice2" name="contact" value="phone" />
       <label for="contactChoice2">Phone</label>
+
       <input type="radio" id="contactChoice3" name="contact" value="mail" />
       <label for="contactChoice3">Mail</label>
 </div>
@@ -47,7 +46,6 @@
 
 
 <button onclick="loadPageInformation()">Reload Page Information</button>
-<button onclick="loadPageInformation1()">Reload Page Information</button>
 </body>
 
 <script>
@@ -58,7 +56,6 @@ function loadDropDownInformation(){
 	var url = "PageAPI.php?id=dropdown";
 	//var url = "http://localhost:8000/ProjectExamples/ExampleProject/inputFiles/dropDownListNHL.json";
 
-	var url = "PageAPI.php?id=ateam";
 	$.getJSON(url, function (data) {
 			$.each(data.dropdownOptions, function (index, value) {
 
@@ -71,13 +68,11 @@ function loadDropDownInformation(){
 }
 
 
-function loadParagraphInformation(){
+function loadParagraphInformation(sel){
 //var i = 0;
-	var url = "PageAPI.php?id=paragraphInfo";
+	var url = "PageAPI.php?id=paragraphInfo&sel="+sel;
 	//var url = "http://localhost:8000/ProjectExamples/ExampleProject/inputFiles/dropDownListNHL.json";
 
-function loadParagraphInformation(sel){
-	var url = "PageAPI.php?id=paragraphInfo&sel="+sel;
 	$.getJSON(url, function (data) {
 		$('#msg').append(data.text);
 	});
@@ -88,27 +83,25 @@ function loadPageInformation(){
 
 	document.getElementById('msg').innerHTML = ""; // clear the paragraph information
 	//document.getElementById('sel').options.length = 0;// clear the dropdown list information information
+
 	// Call functions to load the page information
 	//loadDropDownInformation();
 	loadParagraphInformation(document.getElementById('sel').value);
 
-	//document.getElementById('sel').options.length = 0;// clear the dropdown list information information
 }
+
 function loadPageInformation1(){
+
 	document.getElementById('msg').innerHTML = ""; // clear the paragraph information
 	document.getElementById('sel').options.length = 0;// clear the dropdown list information information
 
 	// Call functions to load the page information
 	loadDropDownInformation();
-	loadParagraphInformation();
-	loadParagraphInformation(1);
 	loadParagraphInformation(0);
 
 }
 
-
  $(document).ready(function () {
-		loadPageInformation(); // Call the primary function to load all of the page information
 		loadPageInformation1(); // Call the primary function to load all of the page information
  });
 
