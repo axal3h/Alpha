@@ -26,15 +26,21 @@
 </head>
 <body>
 
-<h1>Example "Random" API Page</h1>
+<h1>Alpha Team Page</h1>
 
-<p>The checkbox is responsible for enabling and disabling one of the two controls (Deopdown, Radio Button).</p>
-<p>The textbox will split the typed words each in a line.</p>
-<p>The image selector will display images based on the team member name selected.</p>
+<p>The checkbox toggles the activation state between two controls (Dropdown, Radio Button).</p>
+<p>Entering text in the textbox and submitting will display each word on a separate line.</p>
+<p>Choosing a team member's name from the selector will present their corresponding image.</p>
 
-<label for="enableControls">Enable Controls:</label>
-    <input type="checkbox" id="enableControls" onchange="toggleControls()">
-    <br><br>
+<script>
+  function toggleControls() {
+    const isChecked = document.getElementById('enableControls').checked;
+    document.getElementById('sel').disabled = !isChecked;
+    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+      radio.disabled = isChecked;
+    });
+  }
+</script>
     
 <div id='div_1'>	
 <h4>Random Dropdown information</h4>
