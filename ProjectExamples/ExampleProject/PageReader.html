@@ -1,24 +1,42 @@
 <html>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<style>
+	#div_1{
+    border:1px solid red;
+    margin-right:10px;
+    float:left;
+}
+	#div_2{
+    border:1px solid red;
+    margin-right:10px;
+    float:left;
+}
+	#div_3{
+    border:1px solid red;
+    margin-right:10px;
+    float:left;
+}
+	#div_4{
+    border:1px solid red;
+    margin-right:10px;
+    float:left;
+}
+	</style>
 </head>
 <body>
 
-
-<!--
-	Optional todos
-	- Have the items dynamically loaded based on the random number generator. Therefore, everything on the page will be built dynamically.
-	- Add additional elements such as radio buttons etc...
-	- Load everything on the push of a button
-
--->
-
-
 <h1>Example "Random" API Page</h1>
 
-<p>This page is randomly constructed using API values. If you refresh the page, you will notice that the values in the drop down list and paragraph section randomly change. These are driven by an external API that draws the values from a random number API.</p>
+<p>The checkbox is responsible for enabling and disabling one of the two controls (Deopdown, Radio Button).</p>
+<p>The textbox will split the typed words each in a line.</p>
+<p>The image selector will display images based on the team member name selected.</p>
 
-
+<label for="enableControls">Enable Controls:</label>
+    <input type="checkbox" id="enableControls" onchange="toggleControls()">
+    <br><br>
+    
+<div id='div_1'>	
 <h4>Random Dropdown information</h4>
     <select id="sel" onchange="loadPageInformation();">
         <option value="">-- Select --</option>
@@ -29,32 +47,131 @@
     <p id="msg"></p>
 
 
-<!--
-<div>
-      <input type="radio" id="contactChoice1" name="contact" value="email" />
-      <label for="contactChoice1"><div id=opt1></label>
-
-      <input type="radio" id="contactChoice2" name="contact" value="phone" />
-      <label for="contactChoice2">Phone</label>
-
-      <input type="radio" id="contactChoice3" name="contact" value="mail" />
-      <label for="contactChoice3">Mail</label>
-</div>
--->
-
-
-
 
 <button onclick="loadPageInformation()">Reload Page Information</button>
-</body>
+<br>
+</div>
+<div id='div_2'>
+<h4>Select Student Name:</h4>
 
+<form>
+<input type="radio" name="teamname" onclick="check(this.value)" id="ro1" value="1">Alabdullatif, Abdullah Abdulrahman S<br>
+<input type="radio" name="teamname" onclick="check(this.value)" id="ro2" value="2">Alotaibi, Osama Tarahib A<br>
+<input type="radio" name="teamname" onclick="check(this.value)" id="ro3" value="3">Aljohni, Turki Aboulaziz H<br>
+<input type="radio" name="teamname" onclick="check(this.value)" id="ro4" value="4">Gadhi, Ryan Najib H<br>
+<input type="radio" name="teamname" onclick="check(this.value)" id="ro5" value="5">Alshahrani, Muslh Sharea W<br>
+<input type="radio" name="teamname" onclick="check(this.value)" id="ro6" value="6">Alzahrani, Mohammed Marouf S<br>
+<input type="radio" name="teamname" onclick="check(this.value)" id="ro7" value="7">Altukhays, Mohammed Abdulaziz M<br>
+<input type="radio" name="teamname" onclick="check(this.value)" id="ro8" value="8">Aldawsari, Mohammed Faisal M<br>
+<input type="radio" name="teamname" onclick="check(this.value)" id="ro9" value="9">Audi, Tony<br>
+<br>
+Your team name is:  <p id="answer"></p>
+</form>
+</div>
+
+<div id='div_3'>
+<h4>Split typed words into lines:</h4>
+<input type="text" id="textInput" placeholder="Type words here">
+<button onclick="displayWords()">Display Words</button>
+<div id="wordList"></div>
+</div>
+
+<div id='div_4'>
+<h4>Select a team member name to show the picture:</h4>
+<!-- <button onclick="displayRandomPicture(0)">Show Random Picture< /button> -->
+    <div id="pictureContainer"></div>
+</div>
+
+</body>
 <script>
 
+function displayWords() {
+	var inputText = document.getElementById("textInput").value;
+	var wordsArray = inputText.split(" ");
+	var wordListDiv = document.getElementById("wordList");
+	wordListDiv.innerHTML = "";
+	wordsArray.forEach(function(word) {
+		var wordDiv = document.createElement("div");
+		wordDiv.textContent = word;
+		wordListDiv.appendChild(wordDiv);
+	});
+}
+
+function toggleControls() {
+	var checkbox = document.getElementById("enableControls");
+	var dropdown = document.getElementById("sel");
+	var radioButton1 = document.getElementById("ro1");
+	var radioButton2 = document.getElementById("ro2");
+	var radioButton3 = document.getElementById("ro3");
+	var radioButton4 = document.getElementById("ro4");
+	var radioButton5 = document.getElementById("ro5");
+	var radioButton6 = document.getElementById("ro6");
+	var radioButton7 = document.getElementById("ro7");
+	var radioButton8 = document.getElementById("ro8");
+	var radioButton9 = document.getElementById("ro9");
+	if (checkbox.checked) {
+		dropdown.disabled = false;
+		radioButton1.disabled = true;
+		radioButton2.disabled = true;
+		radioButton3.disabled = true;
+		radioButton4.disabled = true;
+		radioButton5.disabled = true;
+		radioButton6.disabled = true;
+		radioButton7.disabled = true;
+		radioButton8.disabled = true;
+		radioButton9.disabled = true;
+	} else {
+		dropdown.disabled = true;
+		radioButton1.disabled = false;
+		radioButton2.disabled = false;
+		radioButton3.disabled = false;
+		radioButton4.disabled = false;
+		radioButton5.disabled = false;
+		radioButton6.disabled = false;
+		radioButton7.disabled = false;
+		radioButton8.disabled = false;
+		radioButton9.disabled = false;
+	}
+}
+
+function displayRandomPicture(sel) {
+            // Array of image URLs
+            var images = [
+                "img/alabdullatif.png",
+				"img/alotaibi.png",
+                "img/turki.png",
+                "img/gadhi.png",
+                "img/alshahrani.png",
+                "img/alzahrani.png",
+                "img/altukhays.png",
+                "img/aldawsari.png",
+                "img/audi.png",
+            ];
+            var randomIndex = sel; //Math.floor(Math.random() * images.length);
+            var pictureContainer = document.getElementById("pictureContainer");
+            pictureContainer.innerHTML = "";
+			
+            var image = document.createElement("img");
+            image.src = images[randomIndex];
+            image.style.width = "300px";
+            image.style.height = "auto";
+            pictureContainer.appendChild(image);
+}
+
+function check(chk) {
+  //document.getElementById("answer").value=chk;
+  document.getElementById('answer').innerHTML = "";
+  	var url = "PageAPI.php?id=paragraphInfo&sel="+chk;
+
+	$.getJSON(url, function (data) {
+		$('#answer').append(data.text);
+	});
+	displayRandomPicture(chk);
+}
 
 function loadDropDownInformation(){
 	var i = 0;
-	var url = "PageAPI.php?id=dropdown";
-	//var url = "http://localhost:8000/ProjectExamples/ExampleProject/inputFiles/dropDownListNHL.json";
+	var url = "PageAPI.php?id=ateam";
 
 	$.getJSON(url, function (data) {
 			$.each(data.dropdownOptions, function (index, value) {
@@ -71,12 +188,11 @@ function loadDropDownInformation(){
 function loadParagraphInformation(sel){
 //var i = 0;
 	var url = "PageAPI.php?id=paragraphInfo&sel="+sel;
-	//var url = "http://localhost:8000/ProjectExamples/ExampleProject/inputFiles/dropDownListNHL.json";
 
 	$.getJSON(url, function (data) {
 		$('#msg').append(data.text);
 	});
-
+	displayRandomPicture(sel);
 }
 
 function loadPageInformation(){
@@ -87,6 +203,8 @@ function loadPageInformation(){
 	// Call functions to load the page information
 	//loadDropDownInformation();
 	loadParagraphInformation(document.getElementById('sel').value);
+	
+	//document.getElementById('sel').options.length = 0;// clear the dropdown list information information
 
 }
 
@@ -98,11 +216,13 @@ function loadPageInformation1(){
 	// Call functions to load the page information
 	loadDropDownInformation();
 	loadParagraphInformation(0);
-
+	
 }
+
 
  $(document).ready(function () {
 		loadPageInformation1(); // Call the primary function to load all of the page information
+		toggleControls();
  });
 
 
