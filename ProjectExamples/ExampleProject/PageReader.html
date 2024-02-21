@@ -1,28 +1,81 @@
 <html>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-	<style>
-	#div_1{
-    border:1px solid red;
-    margin-right:10px;
-    float:left;
-}
-	#div_2{
-    border:1px solid red;
-    margin-right:10px;
-    float:left;
-}
-	#div_3{
-    border:1px solid red;
-    margin-right:10px;
-    float:left;
-}
-	#div_4{
-    border:1px solid red;
-    margin-right:10px;
-    float:left;
-}
-	</style>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding: 20px;
+        background-color: #f4f4f4;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    .div-section {
+        border: 1px solid #ddd;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border-radius: 5px;
+        width: calc(25% - 20px);
+        box-sizing: border-box;
+    }
+
+    /* Using Flexbox for alignment */
+    .div-section-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    select, input[type="text"], input[type="checkbox"] + br + br {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    input[type="radio"] {
+        margin-right: 5px;
+    }
+
+    label {
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    #pictureContainer img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+</style>
+<div class="div-section-container">
+    <div id='div_1' class="div-section">...</div>
+    <div id='div_2' class="div-section">...</div>
+    <div id='div_3' class="div-section">...</div>
+    <div id='div_4' class="div-section">...</div>
+</div>
+
 </head>
 <body>
 
@@ -32,7 +85,7 @@
 <p>Entering text in the textbox and submitting will display each word on a separate line.</p>
 <p>Choosing a team member's name from the selector will present their corresponding image.</p>
 
-<label for="enableControls">Control chechbox:</label>
+<label for="enableControls">Control checkbox:</label>
 <input type="checkbox" id="enableControls" onclick="switchControlStates()">
 <br><br>
 
