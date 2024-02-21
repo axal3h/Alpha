@@ -32,7 +32,7 @@
 <p>Entering text in the textbox and submitting will display each word on a separate line.</p>
 <p>Choosing a team member's name from the selector will present their corresponding image.</p>
 
-<label for="enableControls">Enable Controls:</label>
+<label for="enableControls">Control chechbox:</label>
 <input type="checkbox" id="enableControls" onclick="switchControlStates()">
 <br><br>
 
@@ -50,22 +50,22 @@ function switchControlStates() {
 
     
 <div id='div_1'>	
-<h4>Random Dropdown information</h4>
+<h4>Students Dropdown Menu</h4>
     <select id="sel" onchange="loadPageInformation();">
         <option value="">-- Select --</option>
     </select>
 
 
-<h4>Random Paragraph Information</h4>
+<h4>Team Name</h4>
     <p id="msg"></p>
 
 
 
-<button onclick="loadPageInformation()">Reload Page Information</button>
+<button onclick="loadPageInformation()">Refresh Page</button>
 <br>
 </div>
 <div id='div_2'>
-<h4>Select Student Name:</h4>
+<h4>Select Student:</h4>
 
 <form>
 <input type="radio" name="teamname" onclick="check(this.value)" id="ro1" value="1">Alabdullatif, Abdullah Abdulrahman S<br>
@@ -78,19 +78,19 @@ function switchControlStates() {
 <input type="radio" name="teamname" onclick="check(this.value)" id="ro8" value="8">Aldawsari, Mohammed Faisal M<br>
 <input type="radio" name="teamname" onclick="check(this.value)" id="ro9" value="9">Audi, Tony<br>
 <br>
-Your team name is:  <p id="answer"></p>
+Team Name:  <p id="answer"></p>
 </form>
 </div>
 
 <div id='div_3'>
-<h4>Split typed words into lines:</h4>
+<h4>Split words into separate lines:</h4>
 <input type="text" id="textInput" placeholder="Type words here">
-<button onclick="displayWords()">Display Words</button>
+<button onclick="displayWords()">Submit</button>
 <div id="wordList"></div>
 </div>
 
 <div id='div_4'>
-<h4>Select a team member name to show the picture:</h4>
+<h4>Student's Image Display:</h4>
 <!-- <button onclick="displayRandomPicture(0)">Show Random Picture< /button> -->
     <div id="pictureContainer"></div>
 </div>
