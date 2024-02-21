@@ -32,16 +32,22 @@
 <p>Entering text in the textbox and submitting will display each word on a separate line.</p>
 <p>Choosing a team member's name from the selector will present their corresponding image.</p>
 
+<label for="enableControls">Enable Controls:</label>
+<input type="checkbox" id="enableControls" onclick="switchControlStates()">
+<br><br>
+
 <script>
-  function toggleControls() {
-    const isChecked = document.getElementById('enableControls').checked;
-    document.getElementById('sel').disabled = !isChecked;
-    document.querySelectorAll('input[type="radio"]').forEach(radio => {
-      radio.disabled = isChecked;
+function switchControlStates() {
+    const isEnabled = document.getElementById('enableControls').checked;
+    document.getElementById('sel').disabled = !isEnabled;
+    const radioButtons = document.querySelectorAll('input[type="radio"]');
+    radioButtons.forEach(radio => {
+        radio.disabled = isEnabled;
     });
-  }
- 
+}
 </script>
+
+
     
 <div id='div_1'>	
 <h4>Random Dropdown information</h4>
