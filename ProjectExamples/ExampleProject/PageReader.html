@@ -137,21 +137,21 @@ function toggleControls() {
 function displayRandomPicture(sel) {
             // Array of image URLs
             var images = [
-                "inputFiles/TeamImages/alabdullatif.jpg",
-				"inputFiles/TeamImages/alotaibi.jpg",
-                "inputFiles/TeamImages/turki.jpg",
-                "inputFiles/TeamImages/gadhi.jpg",
-                "inputFiles/TeamImages/alshahrani.jpg",
-                "inputFiles/TeamImages/alzahrani.jpg",
-                "inputFiles/TeamImages/altukhays.jpg",
-                "inputFiles/TeamImages/aldawsari.jpg",
-                "inputFiles/TeamImages/audi.jpg"
+                "TeamImages/alabdullatif.jpg",
+				"TeamImages/alotaibi.jpg",
+                "TeamImages/turki.jpg",
+                "TeamImages/gadhi.jpg",
+                "TeamImages/alshahrani.jpg",
+                "TeamImages/alzahrani.jpg",
+                "TeamImages/altukhays.jpg",
+                "TeamImages/aldawsari.jpg",
+                "TeamImages/audi.jpg"
             ];
             var randomIndex = sel; //Math.floor(Math.random() * images.length);
             var pictureContainer = document.getElementById("pictureContainer");
             pictureContainer.innerHTML = "";
 			
-            var image = document.createElement("inputFiles/TeamImages");
+            var image = document.createElement("TeamImages");
             image.src = images[randomIndex];
             image.style.width = "300px";
             image.style.height = "auto";
