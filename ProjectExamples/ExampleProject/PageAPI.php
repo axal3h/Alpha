@@ -42,7 +42,10 @@ function getInstructor() {
 	return readJSONFile("inputFiles/Instructor.json");
 }
 
-
+function getOrigStudentNames()
+{
+	return readJSONFile("inputFiles/dropDownListStudentsEdits.json");
+}
 
 function getParagraphInformation($rand){
 //$rand = 1;
