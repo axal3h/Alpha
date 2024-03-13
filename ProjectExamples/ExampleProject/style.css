@@ -1,79 +1,68 @@
-body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-        h1, h2, h4 {
-            margin-top: 20px;
-        }
-        #container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            margin-top: 20px;
-        }
-        .control-box {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            padding: 20px;
-            width: 300px;
-        }
-        .control-box h4 {
-            margin-top: 0;
-        }
-        .control-box p {
-            margin-top: 10px;
-            margin-bottom: 0;
-        }
-        #enableControls {
-            margin-bottom: 10px;
-        }
-        button {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin: 10px;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-		li {
-		 /* display: flex; */
-		  justify-content: space-between;
-		  align-items: center;
-		  position: relative;
-		  list-style: none;
-			padding: 10px;
-			color: black;
-			text-transform: capitalize;
-			border: 2px solid #025f70;
-			border-radius: 5px;
-			margin-bottom: 10px;
-		  margin-top: 15px;
-			transition: all 0.75s 
-		};
-		.buttons {
-		  width: 100px;
-		  height: 50px;
-		  position: absolute;
-		  top: 0;
-		  right: 0;
-		  display: inline-block;
-		};
-		.deleteButton {
-		  width: 100px;
-		  height: 50px;
-		  position: absolute;
-		  top: 0;
-		  right: 0;
-		  display: inline-block;
-		};
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 20px;
+        background-color: #f5f5f5;
+        color: #333;
+    }
+    h1 {
+        color: #444;
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .div-section {
+        border: 1px solid #ddd;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    input[type="text"], select {
+        width: 100%;
+        padding: 8px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input[type="checkbox"] {
+        margin-top: 0;
+    }
+    input[type="radio"] {
+        margin-right: 5px;
+    }
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    #div_1, #div_2, #div_3, #div_4 {
+        flex: 1;
+        margin-right: 0; /* Remove the margin-right */
+    }
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 20px;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+</style>
