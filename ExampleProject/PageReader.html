@@ -1,0 +1,291 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 20px;
+        background-color: #f5f5f5;
+        color: #333;
+    }
+    h1 {
+        color: #444;
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .div-section {
+        border: 1px solid #ddd;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    input[type="text"], select {
+        width: 100%;
+        padding: 8px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input[type="checkbox"] {
+        margin-top: 0;
+    }
+    input[type="radio"] {
+        margin-right: 5px;
+    }
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    #div_1, #div_2, #div_3, #div_4 {
+        flex: 1;
+        margin-right: 0; /* Remove the margin-right */
+    }
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 20px;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+</style>
+</head>
+<body>
+
+<h1>Alpha Team Page</h1>
+
+<p>The checkbox toggles the activation state between two controls (Dropdown, Radio Button).</p>
+<p>Entering text in the textbox and submitting will display each word on a separate line.</p>
+<p>Choosing a team member's name from the selector will present their corresponding image.</p>
+
+<label for="enableControls">Control checkbox:</label>
+<input type="checkbox" id="enableControls" onclick="switchControlStates()">
+<br><br>
+
+<script>
+function switchControlStates() {
+    const isEnabled = document.getElementById('enableControls').checked;
+    document.getElementById('sel').disabled = !isEnabled;
+    const radioButtons = document.querySelectorAll('input[type="radio"]');
+    radioButtons.forEach(radio => {
+        radio.disabled = isEnabled;
+    });
+}
+</script>
+
+
+    
+<div id='div_1'>	
+<h4>Students Dropdown Menu</h4>
+    <select id="sel" onchange="loadPageInformation();">
+        <option value="">-- Select --</option>
+    </select>
+
+
+<h4>Team Name</h4>
+    <p id="msg"></p>
+
+
+
+<button onclick="loadPageInformation()">Refresh Page</button>
+<br>
+</div>
+<div id='div_2'>
+<h4>Select Student:</h4>
+
+<form>
+<input type="radio" name="teamname" onclick="check(this.value)" id="ro1" value="1">Alabdullatif, Abdullah Abdulrahman S<br>
+<input type="radio" name="teamname" onclick="check(this.value)" id="ro2" value="2">Alotaibi, Osama Tarahib A<br>
+<input type="radio" name="teamname" onclick="check(this.value)" id="ro3" value="3">Aljohni, Turki Aboulaziz H<br>
+<input type="radio" name="teamname" onclick="check(this.value)" id="ro4" value="4">Gadhi, Ryan Najib H<br>
+<input type="radio" name="teamname" onclick="check(this.value)" id="ro5" value="5">Alshahrani, Muslh Sharea W<br>
+<input type="radio" name="teamname" onclick="check(this.value)" id="ro6" value="6">Alzahrani, Mohammed Marouf S<br>
+<input type="radio" name="teamname" onclick="check(this.value)" id="ro7" value="7">Altukhays, Mohammed Abdulaziz M<br>
+<input type="radio" name="teamname" onclick="check(this.value)" id="ro8" value="8">Aldawsari, Mohammed Faisal M<br>
+<input type="radio" name="teamname" onclick="check(this.value)" id="ro9" value="9">Audi, Tony<br>
+<br>
+Team Name:  <p id="answer"></p>
+</form>
+</div>
+
+<div id='div_3'>
+<h4>Split words into separate lines:</h4>
+<input type="text" id="textInput" placeholder="Type words here">
+<button onclick="displayWords()">Submit</button>
+<div id="wordList"></div>
+</div>
+
+<div id='div_4'>
+<h4>Student's Image Display:</h4>
+<!-- <button onclick="displayRandomPicture(0)">Show Random Picture< /button> -->
+    <div id="pictureContainer"></div>
+</div>
+
+</body>
+<script>
+
+function displayWords() {
+	var inputText = document.getElementById("textInput").value;
+	var wordsArray = inputText.split(" ");
+	var wordListDiv = document.getElementById("wordList");
+	wordListDiv.innerHTML = "";
+	wordsArray.forEach(function(word) {
+		var wordDiv = document.createElement("div");
+		wordDiv.textContent = word;
+		wordListDiv.appendChild(wordDiv);
+	});
+}
+
+function toggleControls() {
+	var checkbox = document.getElementById("enableControls");
+	var dropdown = document.getElementById("sel");
+	var radioButton1 = document.getElementById("ro1");
+	var radioButton2 = document.getElementById("ro2");
+	var radioButton3 = document.getElementById("ro3");
+	var radioButton4 = document.getElementById("ro4");
+	var radioButton5 = document.getElementById("ro5");
+	var radioButton6 = document.getElementById("ro6");
+	var radioButton7 = document.getElementById("ro7");
+	var radioButton8 = document.getElementById("ro8");
+	var radioButton9 = document.getElementById("ro9");
+	if (checkbox.checked) {
+		dropdown.disabled = false;
+		radioButton1.disabled = true;
+		radioButton2.disabled = true;
+		radioButton3.disabled = true;
+		radioButton4.disabled = true;
+		radioButton5.disabled = true;
+		radioButton6.disabled = true;
+		radioButton7.disabled = true;
+		radioButton8.disabled = true;
+		radioButton9.disabled = true;
+	} else {
+		dropdown.disabled = true;
+		radioButton1.disabled = false;
+		radioButton2.disabled = false;
+		radioButton3.disabled = false;
+		radioButton4.disabled = false;
+		radioButton5.disabled = false;
+		radioButton6.disabled = false;
+		radioButton7.disabled = false;
+		radioButton8.disabled = false;
+		radioButton9.disabled = false;
+	}
+}
+
+function displayRandomPicture(sel) {
+            // Array of image URLs
+            var images = [
+               "TeamImages/blank.jpg",  
+			   "TeamImages/alabdullatif.jpg",
+				"TeamImages/alotaibi.jpg",
+                "TeamImages/turki.jpg",
+                "TeamImages/gadhi.jpg",
+                "TeamImages/alshahrani.jpg",
+                "TeamImages/alzahrani.jpg",
+                "TeamImages/altukhays.jpg",
+                "TeamImages/aldawsari.jpg",
+                "TeamImages/audi.jpg"
+            ];
+            var randomIndex = sel; //Math.floor(Math.random() * images.length);
+            var pictureContainer = document.getElementById("pictureContainer");
+            pictureContainer.innerHTML = "";
+			
+            var image = document.createElement("img");
+            image.src = images[randomIndex];
+            image.style.width = "300px";
+            image.style.height = "auto";
+            pictureContainer.appendChild(image);
+}
+
+function check(chk) {
+  //document.getElementById("answer").value=chk;
+  document.getElementById('answer').innerHTML = "";
+  	var url = "PageAPI.php?id=paragraphInfo&sel="+chk;
+
+	$.getJSON(url, function (data) {
+		$('#answer').append(data.text);
+	});
+	displayRandomPicture(chk);
+}
+
+function loadDropDownInformation(){
+	var i = 0;
+	var url = "PageAPI.php?id=dropdown";
+
+	$.getJSON(url, function (data) {
+			$.each(data.dropdownOptions, function (index, value) {
+
+				//alert(data.dropdownOptions[i].value);
+				$('#sel').append('<option value="' + value.value + '">' + value.label + '</option>');
+				i = i+1;
+			});
+	});
+
+}
+
+
+function loadParagraphInformation(sel){
+//var i = 0;
+	var url = "PageAPI.php?id=paragraphInfo&sel="+sel;
+
+	$.getJSON(url, function (data) {
+		$('#msg').append(data.text);
+	});
+	displayRandomPicture(sel);
+}
+
+function loadPageInformation(){
+
+	document.getElementById('msg').innerHTML = ""; // clear the paragraph information
+	//document.getElementById('sel').options.length = 0;// clear the dropdown list information information
+
+	// Call functions to load the page information
+	//loadDropDownInformation();
+	loadParagraphInformation(document.getElementById('sel').value);
+	
+	//document.getElementById('sel').options.length = 0;// clear the dropdown list information information
+
+}
+
+function loadPageInformation1(){
+
+	document.getElementById('msg').innerHTML = ""; // clear the paragraph information
+	document.getElementById('sel').options.length = 0;// clear the dropdown list information information
+
+	// Call functions to load the page information
+	loadDropDownInformation();
+	loadParagraphInformation(0);
+	
+}
+
+
+ $(document).ready(function () {
+		loadPageInformation1(); // Call the primary function to load all of the page information
+		toggleControls();
+ });
+
+
+
+</script>
+</html>
