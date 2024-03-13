@@ -1,69 +1,88 @@
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<style>
-    body {
-        font-family: 'Arial', sans-serif;
-        margin: 20px;
-        background-color: #f5f5f5;
-        color: #333;
-    }
-    h1 {
-        color: #444;
-        font-size: 24px;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    .div-section {
-        border: 1px solid #ddd;
-        background-color: #ffffff;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        margin-bottom: 20px;
-    }
-    label {
-        display: block;
-        margin-bottom: 10px;
-    }
-    input[type="text"], select {
-        width: 100%;
-        padding: 8px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-    input[type="checkbox"] {
-        margin-top: 0;
-    }
-    input[type="radio"] {
-        margin-right: 5px;
-    }
-    button {
-        background-color: #4CAF50;
-        color: white;
-        padding: 10px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    button:hover {
-        background-color: #45a049;
-    }
-    #div_1, #div_2, #div_3, #div_4 {
-        flex: 1;
-        margin-right: 0; /* Remove the margin-right */
-    }
-    .container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        gap: 20px;
-    }
-    img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 5px;
-    }
-</style>
+body {
+    font-family: 'Segoe UI', sans-serif; /* Modern and readable font */
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f7f6; /* Soothing background color */
+}
+
+h1, h2, h4 {
+    margin-top: 20px;
+    color: #2c3e50; /* Modern deep blue shade for headings */
+}
+
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.control-box {
+    border: 1px solid #bdc3c7; /* Light grey border for subtlety */
+    border-radius: 8px; /* Rounded corners for a modern look */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
+    margin-bottom: 20px;
+    padding: 15px; /* Reduced padding for compactness */
+    width: 280px; /* Slightly reduced width for compactness */
+    background-color: #ffffff; /* Pure white background for contrast */
+}
+
+.control-box h4 {
+    margin-top: 0;
+    margin-bottom: 15px; /* Added bottom margin for spacing */
+}
+
+.control-box p {
+    margin-top: 8px;
+    margin-bottom: 0;
+    color: #7f8c8d; /* Grey for paragraphs for improved readability */
+}
+
+#enableControls {
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #3498db; /* Vibrant blue for buttons */
+    border: none;
+    color: white;
+    padding: 8px 16px; /* Slightly reduced padding for compactness */
+    font-size: 14px; /* Slightly smaller font size for compactness */
+    cursor: pointer;
+    border-radius: 4px; /* Slightly reduced border-radius for a modern look */
+    margin: 8px; /* Reduced margin for compactness */
+    transition: background-color 0.2s; /* Smooth transition for hover effect */
+}
+
+button:hover {
+    background-color: #2980b9; /* Darker shade of blue on hover */
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    list-style: none;
+    padding: 8px; /* Slightly reduced padding for compactness */
+    color: #34495e; /* Dark blue for list item text */
+    border: 1px solid #3498db; /* Vibrant blue border matching buttons */
+    border-radius: 4px;
+    margin-bottom: 8px; /* Reduced margin for a compact layout */
+    margin-top: 15px;
+    background-color: #ecf0f1; /* Light grey background for list items */
+    transition: border-color 0.3s; /* Smooth transition for hover effect */
+}
+
+li:hover {
+    border-color: #2980b9; /* Darker border on hover for interactivity */
+}
+
+.buttons, .deleteButton {
+    display: flex;
+    gap: 5px; /* Space between buttons */
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Adjusted for compactness */
+    transform: translateY(-50%);
+}
