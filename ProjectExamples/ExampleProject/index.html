@@ -1,165 +1,55 @@
-<!DOCTYPE html>
-<html>
-<head>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<style>
-    body {
-        font-family: 'Arial', sans-serif;
-        margin: 20px;
-        background-color: #f5f5f5;
-        color: #333;
-    }
-    h1 {
-        color: #444;
-        font-size: 24px;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    .div-section {
-        border: 1px solid #ddd;
-        background-color: #ffffff;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        margin-bottom: 20px;
-    }
-    label {
-        display: block;
-        margin-bottom: 10px;
-    }
-    input[type="text"], select {
-        width: 100%;
-        padding: 8px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-    input[type="checkbox"] {
-        margin-top: 0;
-    }
-    input[type="radio"] {
-        margin-right: 5px;
-    }
-    button {
-        background-color: #4CAF50;
-        color: white;
-        padding: 10px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    button:hover {
-        background-color: #45a049;
-    }
-    #div_1, #div_2, #div_3, #div_4 {
-        flex: 1;
-        margin-right: 0; /* Remove the margin-right */
-    }
-    .container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        gap: 20px;
-    }
-    img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 5px;
-    }
-</style>
-    <title>Project Page</title>
-    <link rel="stylesheet" href="styles.css">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  
+  <link rel="stylesheet" type="text/css" href="https://www.se.rit.edu/resources/style-sheets/SEdepartment.css">
+  <link rel="stylesheet" type="text/css" href="swen-a.css">
+
+  
+  <script language="JavaScript">
+  var course_number = ""; // Change this to be the title of the course
+  var course_title = "Foundations of Software Engineering"; // Change this to be the title of the course
+  var section = ""; // Change this to be the title of the course
+  full_title = course_number + " " + course_title;
+  </script><!-- Do not change this -->
+  
+  <script language="JavaScript" src="https://www.se.rit.edu/resources/js/se.js"></script>
+  
+  <script language="JavaScript">
+  document.title = course_number + "" + section + " " + course_title; // No need to change this
+  </script><!-- Feel free to add custom styles if you like, but we'd rather put it in SEDepartment.css if at all possible -->
+  
 </head>
 
+
+
 <body>
+  <header>
+    <a href="https://certified.rit.edu/" alt="RIT Certified">
+      <img src="https://l3harris-coursework.github.io/images/rit_cert_icon.jpg" width="75" height="75">
+    </a>
+    <h1>
+      <script language="JavaScript">
+        document.write(document.title);
+      </script>
+  
+    </h1>
+    <div class="clear"></div>
+  </header>
+<article>
+<body>
+<h1>API Project Examples</h1>
+	
+<p>This page contains links to the running example that can be used for the project.</p>
 
-    <header>
-        <h1>Students Information Page</h1>
-        <hr>
-        <button class="reload-button" onclick="loadPageInformationOnStartUp()">Reload Page Information</button>
-    </header>
+<ul>
+	<li><b><a href="PageReader.html">`Random' Page Loader</a>: </b> Page loads a variety of HTML elements including paragraphs and dropdown lists from a variety of external JSON files using an API.</li>
+</ul>
 
-    <main>
-
-        <div class="checkbox-container">
-            <br>
-            <input type="checkbox" id="selectionSwitch" name="selectionSwitch" value="selectionSwitch">
-            <label for="selectionSwitch" class="label-color">Switch Selector Type</label><br><br>
-        </div>
-    
-        <div class="container">
-            <div class="column-container" id="dropdownContainer">
-                <label>Select Student Name:</label>
-                <div class="column" style="background-color: #f9f9f9;">                
-                    <select id="dropdownSel" onchange="updateDropdownParagraph('dropdownSelection', $('#dropdownSel').val());">
-                        <option value="0">-- Select --</option>
-                    </select>
-                    <br><h4>Student's Team:</h4> 
-                    <p id="selctionMsg"></p>
-                </div>
-            </div>
-    
-            <div class="column-container" id="radioSContainer">
-                <label>Select Student Name:</label>
-                <div class="column" style="background-color: #f5f5f5;">                
-                    <div class="radioContainer" id="radioContainer"></div>
-                    <br><h4>Student's Team:</h4> 
-                    <p id="radioMsg"></p>
-                </div>
-            </div>
-    
-            <div class="column-container">
-                <label>Student Photo:</label>
-                <div class="column" style="background-color: #f9f9f9;">
-                    <img id="studentImg" width="300" height="400">
-                </div>
-            </div>
-    
-            <div class="column-container">
-                <label>Split Function</label>
-                <div class="column" style="background-color: #f5f5f5;">
-                    <label for="name">Write any sentence:</label>
-                    <input type="text" id="txtboxSplit" name="split" size="5"/>
-                    <button onclick="splitWords()">Submit</button>
-                    <br><h4>Output:</h4>
-                    <p id="txtSplit"></p>
-                </div>
-            </div>
-    
-            <div class="column-container">
-                <label>Editable Student Table</label>
-                <div class="column">
-                    <button onclick="addStudent()">Add Student</button>
-                    <button onclick="saveTable()">Save Table</button>
-                    <button onclick="resetTable()">Reset Table</button>
-    
-                    <table id="rosterTable">
-                        <thead>
-                            <tr>
-                                <th>Student Name</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Rows for students will be added dynamically -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <footer>
-        <p>CodeCrafter Webpage</p>
-    </footer>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script src="script.js"></script>
-    <script src="tableUtils.js"></script>
-
+</article>
 </body>
+
 </html>

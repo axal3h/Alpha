@@ -1,125 +1,184 @@
 <?php
 
 // The purpose of this API is to act as an intermediary to determing the json information to be returned by the example PageReader page.
+
 $jsonData = get_file_by_id($_GET["id"]);
 
-function readJSONFile($url)
-{
+// -------------- Start paragraph gathering information 
+function getParagraphInfo1() {
+	return readJSONFile("inputFiles/para1.json");
+}
+
+function getParagraphInfo2() {
+	return readJSONFile("inputFiles/para2.json");
+}
+
+function getParagraphInfo3() {
+	return readJSONFile("inputFiles/para3.json");
+}
+
+function getParagraphInfo4() {
+	return readJSONFile("inputFiles/para4.json");
+}
+
+function getParagraphInfo5() {
+	return readJSONFile("inputFiles/para5.json");
+}
+function getParagraphInfo6() {
+	return readJSONFile("inputFiles/para6.json");
+}
+
+function getParagraphInfo7() {
+	return readJSONFile("inputFiles/para7.json");
+}
+
+function getParagraphInfo8() {
+	return readJSONFile("inputFiles/para8.json");
+}
+
+
+function getParagraphInformation($rand){
+//$rand = 1;
+	switch ($rand){
+	    case "1":
+	      $jsonData = getParagraphInfo1();
+	      break;
+	    case "2":
+	      $jsonData = getParagraphInfo2();
+	      break;
+	    case "3":
+	      $jsonData = getParagraphInfo3();
+	      break;
+	    case "4":
+	      $jsonData = getParagraphInfo4();
+	      break;
+	    case "5":
+	      $jsonData = getParagraphInfo5();
+	      break;
+		case "6":
+	      $jsonData = getParagraphInfo6();
+	      break;
+		case "7":
+	      $jsonData = getParagraphInfo7();
+	      break;
+		case "8":
+	      $jsonData = getParagraphInfo8();
+	      break;
+	  }
+}
+
+
+
+
+// -------------- Start dropdown gathering information 
+
+// Call the JSON files using these functions.
+//		This could likely be removed and the file calls made directly in the if statement.
+function getDropDownInformationState() {
+	return readJSONFile("inputFiles/dropDownListState.json");
+}
+
+function getDropDownInformationStooge() {
+	return readJSONFile("inputFiles/dropDownListStooge.json");
+}
+
+function getDropDownInformationMLB() {
+	return readJSONFile("inputFiles/dropDownListBaseball.json");
+}
+
+function getDropDownInformationNFL() {
+	return readJSONFile("inputFiles/dropDownListNFL.json");
+}
+
+function getDropDownInformationNHL() {
+	return readJSONFile("inputFiles/dropDownListNHL.json");
+}
+
+
+function getMultChoiceInformation() {
+	return readJSONFile("inputFiles/shortOptions.json");
+}
+
+function getATeamInformation() {
+	return readJSONFile("inputFiles/ateam.json");
+}
+
+
+
+// If it is a dropdown list, take the random value that is being passed in to randomly determine what the contents of the dropdown list should be. This will help with dynamically creating the page.
+function getDropDownInformation($rand){
+//$rand = 1;
+	switch ($rand){
+	    case "1":
+	      $jsonData = getDropDownInformationState();
+	      break;
+	    case "2":
+	      $jsonData = getDropDownInformationStooge();
+	      break;
+	    case "3":
+	      $jsonData = getDropDownInformationMLB();
+	      break;
+	    case "4":
+	      $jsonData = getDropDownInformationNFL();
+	      break;
+	    case "5":
+	      $jsonData = getDropDownInformationNHL();
+	      break;
+		case "6":
+	      $jsonData = getATeamInformation();
+	      break;
+	  }
+}
+
+
+
+
+
+
+// ----------------------- THE PRIMARY PAGE FUNCTIONS -----------------------
+
+// Create a basic file for just getting the contents of a JSON file
+function readJSONFile($url) {
+
 	$JSON = file_get_contents($url);
 	echo $JSON; // return the information to be read by the reader page
 }
 
-//  Start dropdown gathering information 
-function getDropDownInformationSNames()
-{
-	return readJSONFile("inputFiles/dropDownListStudents.json");
-}
 
-function getListInformationTeams()
-{
-	return readJSONFile("inputFiles/ListTeams.json");
-}
+// Get a random value from an external API.
+function getRandomValue(){
 
-function getOrigStudentNames()
-{
-	return readJSONFile("inputFiles/studentsSrc.json");
+// Make this a variable
+	// https://l3harriscourseexamples.onrender.com/ProjectExamples/RandomAPI.php?action=get_RandomValue
+	$extRandomURL = "https://l3harriscourseexamples.onrender.com/ProjectExamples/RandomAPI.php?action=get_RandomValue"; // make this a global variable
+	$content = file_get_contents($extRandomURL);
+	$result  = json_decode($content);
+	return $result;
 }
-
-// If it is a dropdown list, take the sel value determine what the contents of the dropdown list should be
-function getDropDownInformation($sel)
-{
-	switch ($sel) {
-		case "1":
-			$jsonData = getDropDownInformationSNames();
-			break;
-		case "2":
-			$jsonData = getListInformationTeams();
-			break;
-		case "3":
-			$jsonData = getOrigStudentNames();
-			break;
-	}
-}
-
-// ----------------------- THE PRIMARY PAGE FUNCTIONS -----------------------
 
 // The main function that drives the page
-function get_file_by_id($id)
-{
-	switch ($id) {
-		case "studentsList":
-			$jsonData = getDropDownInformation(1);
-			break;
-		case "paragraphInfo":
-			$jsonData = getDropDownInformation(2);
-			break;
-		case "resetTable":
-			$jsonData = getDropDownInformation(3);
-			break;
-	}
+function get_file_by_id($id){
+	//$rand = getRandomValue();
+	$jsonDataSel = $_GET["sel"];
+	$rand = $jsonDataSel;
+ 	switch ($id){
+    case "dropdown":
+      $jsonData = getDropDownInformation($rand);
+      break;
+    case "paragraphInfo":
+      $jsonData = getParagraphInformation($rand);
+      break;
+    case "multChoice":
+      $jsonData = getMultChoiceInformation();
+      break;
+	case "ateam":
+      $jsonData = getATeamInformation();
+      break;
+  	}
+
 }
 
-// Function to save students list
-function saveStudentsList()
-{
-	// Check if the request method is POST
-	if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-		http_response_code(400); // Bad request
-		echo json_encode(array('error' => 'Invalid request method'));
-		return;
-	}
 
-	// Get the JSON data from the request body
-	$jsonString = file_get_contents('php://input');
+?>
 
-	// Decode the JSON data
-	$requestData = json_decode($jsonString, true);
 
-	// Check if 'students' array is present
-	if (!isset($requestData['students'])) {
-		http_response_code(400); // Bad request
-		echo json_encode(array('error' => 'Missing students data'));
-		return;
-	}
-
-	// Extract students array
-	$students = $requestData['students'];
-
-	// Prepare data to write to the JSON file
-	$data = array('dropdownOptions' => array());
-	foreach ($students as $student) {
-		// Debugging: Inspect the $student array
-		var_dump($student);
-
-		// Ensure required keys are set
-		if (isset($student['value']) && isset($student['label'])) {
-			$data['dropdownOptions'][] = array('value' => $student['value'], 'label' => $student['label']);
-		} else {
-			// Error handling: Log or echo an error message
-			error_log("Invalid student data: " . print_r($student, true));
-			// You can also return an error response if needed
-			http_response_code(500);
-			echo json_encode(array('error' => 'Invalid student data'));
-			return;
-		}
-	}
-
-	// Convert data to JSON format
-	$jsonData = json_encode($data, JSON_PRETTY_PRINT);
-
-	// Path to the JSON file
-	$jsonFilePath = 'inputFiles/dropDownListStudents.json';
-
-	// Write data to the JSON file
-	if (file_put_contents($jsonFilePath, $jsonData) !== false) {
-		echo json_encode(array('success' => 'Students list saved successfully'));
-	} else {
-		http_response_code(500); // Internal server error
-		echo json_encode(array('error' => 'Failed to save students list'));
-	}
-}
-
-// Call the function to save students list when the script receives a POST request
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	saveStudentsList();
-}
