@@ -10,12 +10,16 @@
 </head>
 <body>
 
-<h1>Example API Page</h1>
+<h1>Alpha Team Page</h1>
 
-<p>The checkbox is responsible for enabling and disabling one of the two controls (Dropdown, Radio Button).</p>
-<p>The textbox will split the typed words each in a line.</p>
-<p>The image selector will show the selected user image.</p>
-<p>The student list section can be edited and dragged to reorder the list.</p>
+<p>The checkbox toggles the activation state between two controls (Dropdown, Radio Button).</p>
+<p>Entering text in the textbox and submitting will display each word on a separate line.</p>
+<p>Choosing a team member's name from the selector will present their corresponding image.</p>
+
+<label for="enableControls">Control checkbox:</label>
+<input type="checkbox" id="enableControls" onclick="switchControlStates()">
+<br><br>
+
 <label for="enableControls">Enable Controls:</label>
 <input type="checkbox" id="enableControls" onchange="toggleControls()">
     
