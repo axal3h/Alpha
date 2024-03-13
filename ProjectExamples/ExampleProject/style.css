@@ -30,12 +30,12 @@ h1, h2, h4 {
 }
 
 .control-box p {
-    margin-top: 10px;
+    margin-top: 5px;
     margin-bottom: 0;
 }
 
 #enableControls {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 button {
