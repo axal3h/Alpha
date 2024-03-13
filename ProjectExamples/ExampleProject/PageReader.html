@@ -1,147 +1,64 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<style>
-    body {
-        font-family: 'Arial', sans-serif;
-        margin: 20px;
-        background-color: #f5f5f5;
-        color: #333;
-    }
-    h1 {
-        color: #444;
-        font-size: 24px;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    .div-section {
-        border: 1px solid #ddd;
-        background-color: #ffffff;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        margin-bottom: 20px;
-    }
-    label {
-        display: block;
-        margin-bottom: 10px;
-    }
-    input[type="text"], select {
-        width: 100%;
-        padding: 8px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-    input[type="checkbox"] {
-        margin-top: 0;
-    }
-    input[type="radio"] {
-        margin-right: 5px;
-    }
-    button {
-        background-color: #4CAF50;
-        color: white;
-        padding: 10px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    button:hover {
-        background-color: #45a049;
-    }
-    #div_1, #div_2, #div_3, #div_4 {
-        flex: 1;
-        margin-right: 0; /* Remove the margin-right */
-    }
-    .container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        gap: 20px;
-    }
-    img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 5px;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 </head>
 <body>
 
-<h1>Alpha Team Page</h1>
+<h1>Example API Page</h1>
 
-<p>The checkbox toggles the activation state between two controls (Dropdown, Radio Button).</p>
-<p>Entering text in the textbox and submitting will display each word on a separate line.</p>
-<p>Choosing a team member's name from the selector will present their corresponding image.</p>
-
-<label for="enableControls">Control checkbox:</label>
-<input type="checkbox" id="enableControls" onclick="switchControlStates()">
-<br><br>
-
-<script>
-function switchControlStates() {
-    const isEnabled = document.getElementById('enableControls').checked;
-    document.getElementById('sel').disabled = !isEnabled;
-    const radioButtons = document.querySelectorAll('input[type="radio"]');
-    radioButtons.forEach(radio => {
-        radio.disabled = isEnabled;
-    });
-}
-</script>
-
-
+<p>The checkbox is responsible for enabling and disabling one of the two controls (Dropdown, Radio Button).</p>
+<p>The textbox will split the typed words each in a line.</p>
+<p>The image selector will show the selected user image.</p>
+<p>The student list section can be edited and dragged to reorder the list.</p>
+<label for="enableControls">Enable Controls:</label>
+<input type="checkbox" id="enableControls" onchange="toggleControls()">
     
-<div id='div_1'>	
-<h4>Students Dropdown Menu</h4>
-    <select id="sel" onchange="loadPageInformation();">
-        <option value="">-- Select --</option>
-    </select>
+<div id="container">
+	<div class="control-box">
+        <h4>Student List</h4>
+			<ul id="studentList"></ul>
+        <h4>Add Student</h4>
+			<input type="text" id="newStudentName" placeholder="Enter student name">
+			<button onclick="addStudent()"><i class="fas fa-plus"></i> Add Student</button>
+			<button onclick="resetStudent()"><i class="fas fa-undo"></i> Reset List</button>
+    </div>
+    <div class="control-box">
+        <h4>Dropdown Information</h4>
+        <select id="sel" onchange="loadPageInformation();">
+            <option value="">-- Select --</option>
+        </select>
+        <p id="msg"></p>
+        <button onclick="loadPageInformation()">Reload Page Information</button>
+    </div>
 
+    <div class="control-box">
+        <h4>Select Student Name:</h4>
+        <form id="radioForm">
+            <div id="radioButtonContainer"></div>
+            <p>Your team name is:  <span id="answer"></span></p>
+        </form>
+    </div>
 
-<h4>Team Name</h4>
-    <p id="msg"></p>
-
-
-
-<button onclick="loadPageInformation()">Refresh Page</button>
-<br>
-</div>
-<div id='div_2'>
-<h4>Select Student:</h4>
-
-<form>
-<input type="radio" name="teamname" onclick="check(this.value)" id="ro1" value="1">Alabdullatif, Abdullah Abdulrahman S<br>
-<input type="radio" name="teamname" onclick="check(this.value)" id="ro2" value="2">Alotaibi, Osama Tarahib A<br>
-<input type="radio" name="teamname" onclick="check(this.value)" id="ro3" value="3">Aljohni, Turki Aboulaziz H<br>
-<input type="radio" name="teamname" onclick="check(this.value)" id="ro4" value="4">Gadhi, Ryan Najib H<br>
-<input type="radio" name="teamname" onclick="check(this.value)" id="ro5" value="5">Alshahrani, Muslh Sharea W<br>
-<input type="radio" name="teamname" onclick="check(this.value)" id="ro6" value="6">Alzahrani, Mohammed Marouf S<br>
-<input type="radio" name="teamname" onclick="check(this.value)" id="ro7" value="7">Altukhays, Mohammed Abdulaziz M<br>
-<input type="radio" name="teamname" onclick="check(this.value)" id="ro8" value="8">Aldawsari, Mohammed Faisal M<br>
-<input type="radio" name="teamname" onclick="check(this.value)" id="ro9" value="9">Audi, Tony<br>
-<br>
-Team Name:  <p id="answer"></p>
-</form>
-</div>
-
-<div id='div_3'>
-<h4>Split words into separate lines:</h4>
-<input type="text" id="textInput" placeholder="Type words here">
-<button onclick="displayWords()">Submit</button>
-<div id="wordList"></div>
-</div>
-
-<div id='div_4'>
-<h4>Student's Image Display:</h4>
-<!-- <button onclick="displayRandomPicture(0)">Show Random Picture< /button> -->
-    <div id="pictureContainer"></div>
+	<div class="control-box">
+        <h4>Select a Team Member Name to Show the Picture:</h4>
+        <div id="pictureContainer"></div>
+        <p>Team name is:  <span id="team01"></span></p>
+    </div>
+	
+    <div class="control-box">
+        <h4>Split Typed Words into Lines:</h4>
+        <input type="text" id="textInput" placeholder="Type words here">
+        <button onclick="displayWords()">Display Words</button>
+        <div id="wordList"></div>
+    </div>
 </div>
 
-</body>
 <script>
 
 function displayWords() {
@@ -159,53 +76,37 @@ function displayWords() {
 function toggleControls() {
 	var checkbox = document.getElementById("enableControls");
 	var dropdown = document.getElementById("sel");
-	var radioButton1 = document.getElementById("ro1");
-	var radioButton2 = document.getElementById("ro2");
-	var radioButton3 = document.getElementById("ro3");
-	var radioButton4 = document.getElementById("ro4");
-	var radioButton5 = document.getElementById("ro5");
-	var radioButton6 = document.getElementById("ro6");
-	var radioButton7 = document.getElementById("ro7");
-	var radioButton8 = document.getElementById("ro8");
-	var radioButton9 = document.getElementById("ro9");
+
+	var checkbox = document.getElementById("enableControls");
+	var dropdown = document.getElementById("sel");
+	var radioButtons = document.querySelectorAll('input[name="teamname"]');
+
 	if (checkbox.checked) {
 		dropdown.disabled = false;
-		radioButton1.disabled = true;
-		radioButton2.disabled = true;
-		radioButton3.disabled = true;
-		radioButton4.disabled = true;
-		radioButton5.disabled = true;
-		radioButton6.disabled = true;
-		radioButton7.disabled = true;
-		radioButton8.disabled = true;
-		radioButton9.disabled = true;
+		radioButtons.forEach(function(radioButton) {
+			radioButton.disabled = true;
+		});
 	} else {
 		dropdown.disabled = true;
-		radioButton1.disabled = false;
-		radioButton2.disabled = false;
-		radioButton3.disabled = false;
-		radioButton4.disabled = false;
-		radioButton5.disabled = false;
-		radioButton6.disabled = false;
-		radioButton7.disabled = false;
-		radioButton8.disabled = false;
-		radioButton9.disabled = false;
+		radioButtons.forEach(function(radioButton) {
+			radioButton.disabled = false;
+		});
 	}
+	
 }
 
-function displayRandomPicture(sel) {
+function displayRandomPicture(sel, team) {
             // Array of image URLs
             var images = [
-               "TeamImages/blank.jpg",  
-			   "TeamImages/alabdullatif.jpg",
-				"TeamImages/alotaibi.jpg",
-                "TeamImages/turki.jpg",
-                "TeamImages/gadhi.jpg",
-                "TeamImages/alshahrani.jpg",
-                "TeamImages/alzahrani.jpg",
-                "TeamImages/altukhays.jpg",
-                "TeamImages/aldawsari.jpg",
-                "TeamImages/audi.jpg"
+                "img/0.jpg",
+				"img/1.jpg",
+                "img/2.jpg",
+                "img/3.jpg",
+                "img/4.jpg",
+                "img/5.jpg",
+                "img/6.jpg",
+                "img/7.jpg",
+                "img/8.jpg"
             ];
             var randomIndex = sel; //Math.floor(Math.random() * images.length);
             var pictureContainer = document.getElementById("pictureContainer");
@@ -216,76 +117,184 @@ function displayRandomPicture(sel) {
             image.style.width = "300px";
             image.style.height = "auto";
             pictureContainer.appendChild(image);
+			document.getElementById('team01').innerHTML = team;
 }
 
 function check(chk) {
-  //document.getElementById("answer").value=chk;
   document.getElementById('answer').innerHTML = "";
   	var url = "PageAPI.php?id=paragraphInfo&sel="+chk;
-
+    var team = "";
 	$.getJSON(url, function (data) {
 		$('#answer').append(data.text);
+		team = data.text;
+		displayRandomPicture(chk, team);
 	});
-	displayRandomPicture(chk);
+	if(chk > 8)
+		displayRandomPicture(0, "No-Team");
+}
+
+// <input type="radio" name="teamname" onclick="check(this.value)" id="ro1" value="1">----<br>
+function loadRadioButtonInformation(){
+	var url = "PageAPI.php?id=ateam";
+    $.getJSON(url, function (data) {
+        var radioButtonContainer = $('#radioButtonContainer');
+        radioButtonContainer.empty(); // Clear previous content
+
+        $.each(data.students, function (index, student) {
+			if(student.id != 0){
+            var radioButton = $('<input onclick="check(this.value)" type="radio" name="studentRadio" value="' + student.id + '">');
+            var label = $('<label>').text(student.name);
+            radioButtonContainer.append(radioButton);
+            radioButtonContainer.append(label);
+            radioButtonContainer.append('<br>');
+			}
+        });
+    });
+	
 }
 
 function loadDropDownInformation(){
 	var i = 0;
-	var url = "PageAPI.php?id=dropdown";
-
+	var url = "PageAPI.php?id=ateam";
 	$.getJSON(url, function (data) {
-			$.each(data.dropdownOptions, function (index, value) {
-
-				//alert(data.dropdownOptions[i].value);
-				$('#sel').append('<option value="' + value.value + '">' + value.label + '</option>');
+			$.each(data.students, function (index, value) {
+				$('#sel').append('<option value="' + value.id + '">' + value.name + '</option>');
 				i = i+1;
 			});
 	});
-
 }
 
-
 function loadParagraphInformation(sel){
-//var i = 0;
 	var url = "PageAPI.php?id=paragraphInfo&sel="+sel;
-
+    var team = "";
 	$.getJSON(url, function (data) {
 		$('#msg').append(data.text);
+		team = data.text;
+		displayRandomPicture(sel, team);
 	});
-	displayRandomPicture(sel);
 }
 
 function loadPageInformation(){
 
 	document.getElementById('msg').innerHTML = ""; // clear the paragraph information
-	//document.getElementById('sel').options.length = 0;// clear the dropdown list information information
-
-	// Call functions to load the page information
-	//loadDropDownInformation();
-	loadParagraphInformation(document.getElementById('sel').value);
-	
-	//document.getElementById('sel').options.length = 0;// clear the dropdown list information information
-
+	var chk = document.getElementById('sel').value;
+	if(chk > 8)
+	displayRandomPicture(0, "No-Team");
+	else
+	loadParagraphInformation(chk);
 }
 
 function loadPageInformation1(){
 
 	document.getElementById('msg').innerHTML = ""; // clear the paragraph information
 	document.getElementById('sel').options.length = 0;// clear the dropdown list information information
-
-	// Call functions to load the page information
 	loadDropDownInformation();
 	loadParagraphInformation(0);
-	
+	loadRadioButtonInformation();
 }
+//////////////////////
+// Function to fetch student data from the server
+    function fetchStudents() {
+		var url = "PageAPI.php?id=ateam";
+		$.getJSON(url, function (data) {
+				displayStudents(data.students);
+				loadPageInformation1();
+		});
+    }
 
+    // Function to display students as a list
+    function displayStudents(students) {
+        var studentList = $('#studentList');
+        studentList.empty();
 
+        students.forEach(function(student) {
+			//var liTMP = '<li id='+student.id+'>';
+            var listItem = $('<li>').text(student.name);
+			listItem.attr('data-id', student.id); // Set data-id attribute
+            var editButton = $('<button>').text('Edit').click(function() {
+                var newName = prompt('Enter new name:', student.name);
+                if (newName !== null) {
+                    student.name = newName;
+                    updateStudent(student);
+                }
+            });
+			var deleteButton = $('<button>').text('Delete').click(function() {
+                if (confirm('Are you sure you want to delete this student?')) {
+                    deleteStudent(student);
+                }
+            });
+			
+            listItem.append('<div class="btn-group">');
+			listItem.append(editButton, deleteButton);
+            listItem.append('</div>');
+
+            if(student.id != 0)
+                studentList.append(listItem);
+        });
+
+        // Make the student list sortable
+        new Sortable(studentList.get(0), {
+            animation: 150,
+            onUpdate: function(event) {
+                saveStudentOrder();
+            }
+        });
+    }
+
+    // Function to add a new student
+    function addStudent() {
+        var newName = $('#newStudentName').val().trim();
+        if (newName !== '') {
+            var newStudent = { name: newName, id: Date.now() };
+            $.post('add_student.php', newStudent, function() {
+                fetchStudents();
+            });
+        }
+    }
+
+    // Function to update student data
+    function updateStudent(student) {
+        $.post('update_student.php', student, function() {
+            fetchStudents();
+        });
+    }
+
+    // Function to delete a student
+    function deleteStudent(student) {
+        $.post('delete_student.php', student, function() {
+            fetchStudents();
+        });
+    }
+	
+    // Function to reset student list
+    function resetStudent() {
+        $.post('reset_list.php', "", function() {
+            fetchStudents();
+        });
+    }
+
+    // Function to save the new order of students
+    function saveStudentOrder() {
+
+        var studentOrder = [];
+        $('#studentList li').each(function() {
+            var studentId = $(this).data('id');
+            studentOrder.push(studentId);
+        });
+
+        // Send the updated order to the server to save to JSON file
+        $.post('save_order.php', { studentOrder }, function() {
+            fetchStudents();
+        });
+    }
+
+//////////////////////
  $(document).ready(function () {
-		loadPageInformation1(); // Call the primary function to load all of the page information
+		loadPageInformation1();
 		toggleControls();
+		displayRandomPicture("0", "No Member Selected.");
+		fetchStudents();
  });
-
-
-
 </script>
+</body>
 </html>

@@ -4,75 +4,65 @@
 
 $jsonData = get_file_by_id($_GET["id"]);
 
-
-
-
-
-
 // -------------- Start paragraph gathering information 
-function getAlphateam1() {
-	return readJSONFile("inputFiles/Alphateam1.json");
+function getParagraphInfo1() {
+	return readJSONFile("inputFiles/para1.json");
 }
 
-function getAlphateam2() {
-	return readJSONFile("inputFiles/Alphateam2.json");
+function getParagraphInfo2() {
+	return readJSONFile("inputFiles/para2.json");
 }
 
-function getTigers1() {
-	return readJSONFile("inputFiles/Tigers1.json");
+function getParagraphInfo3() {
+	return readJSONFile("inputFiles/para3.json");
 }
 
-function getTigers2() {
-	return readJSONFile("inputFiles/Tigers2.json");
+function getParagraphInfo4() {
+	return readJSONFile("inputFiles/para4.json");
 }
 
-function getATeam1() {
-	return readJSONFile("inputFiles/ATeam1.json");
+function getParagraphInfo5() {
+	return readJSONFile("inputFiles/para5.json");
 }
-function getATeam2() {
-	return readJSONFile("inputFiles/ATeam2.json");
-}
-function getCodeCrafters1() {
-	return readJSONFile("inputFiles/CodeCrafters1.json");
-}
-function getCodeCrafters2() {
-	return readJSONFile("inputFiles/CodeCrafters2.json");
-}
-function getInstructor() {
-	return readJSONFile("inputFiles/Instructor.json");
+function getParagraphInfo6() {
+	return readJSONFile("inputFiles/para6.json");
 }
 
+function getParagraphInfo7() {
+	return readJSONFile("inputFiles/para7.json");
+}
+
+function getParagraphInfo8() {
+	return readJSONFile("inputFiles/para8.json");
+}
 
 
 function getParagraphInformation($rand){
 //$rand = 1;
 	switch ($rand){
 	    case "1":
-	      $jsonData = getAlphateam1();
+	      $jsonData = getParagraphInfo1();
 	      break;
 	    case "2":
-	      $jsonData = getAlphateam2();
+	      $jsonData = getParagraphInfo2();
 	      break;
 	    case "3":
-	      $jsonData = getTigers1();
+	      $jsonData = getParagraphInfo3();
 	      break;
 	    case "4":
-	      $jsonData = getTigers2();
+	      $jsonData = getParagraphInfo4();
 	      break;
 	    case "5":
-	      $jsonData = getATeam1();
+	      $jsonData = getParagraphInfo5();
 	      break;
-            case "6":
-	      $jsonData = getATeam2();
+		case "6":
+	      $jsonData = getParagraphInfo6();
 	      break;
-            case "7":
-	      $jsonData = getCodeCrafters1();
+		case "7":
+	      $jsonData = getParagraphInfo7();
 	      break;
-            case "8":
-	      $jsonData = getCodeCrafters2();
-	      break;
-            case "9":
-	      $jsonData = getInstructor();
+		case "8":
+	      $jsonData = getParagraphInfo8();
 	      break;
 	  }
 }
@@ -109,8 +99,8 @@ function getMultChoiceInformation() {
 	return readJSONFile("inputFiles/shortOptions.json");
 }
 
-function getdropDownListStudents() {
-	return readJSONFile("inputFiles/dropDownListStudents.json");
+function getATeamInformation() {
+	return readJSONFile("inputFiles/ateam.json");
 }
 
 
@@ -133,6 +123,9 @@ function getDropDownInformation($rand){
 	      break;
 	    case "5":
 	      $jsonData = getDropDownInformationNHL();
+	      break;
+		case "6":
+	      $jsonData = getATeamInformation();
 	      break;
 	  }
 }
@@ -166,11 +159,11 @@ function getRandomValue(){
 // The main function that drives the page
 function get_file_by_id($id){
 	//$rand = getRandomValue();
-        $jsonDataSel = $_GET["sel"]; 
-        $rand = $jsonDataSel;  
+	$jsonDataSel = $_GET["sel"];
+	$rand = $jsonDataSel;
  	switch ($id){
     case "dropdown":
-      $jsonData = getdropDownListStudents($rand);
+      $jsonData = getDropDownInformation($rand);
       break;
     case "paragraphInfo":
       $jsonData = getParagraphInformation($rand);
@@ -178,7 +171,11 @@ function get_file_by_id($id){
     case "multChoice":
       $jsonData = getMultChoiceInformation();
       break;
+	case "ateam":
+      $jsonData = getATeamInformation();
+      break;
   	}
+
 }
 
 
