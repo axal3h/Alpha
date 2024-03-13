@@ -1,126 +1,94 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 20px;
-    background-color: #F0F2F5;
-    color: #424242;
-}
-
-h1 {
-    color: #2C3E50;
-    font-size: 28px;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.div-section {
-    border: none;
-    background-color: #FFFFFF;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    margin-bottom: 25px;
+    background-color: #f0f2f5; /* Light grey background for subtle contrast */
 }
 
-label {
-    display: block;
+h1, h2, h4 {
+    margin-top: 20px;
+    color: #333; /* Dark grey for better readability */
+}
+
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.control-box {
+    border: 1px solid #e1e1e1; /* Softer border color */
+    border-radius: 8px; /* Slightly larger border radius for modern look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin-bottom: 20px;
+    padding: 20px;
+    width: 300px;
+    background-color: #ffffff; /* Pure white for contrast */
+}
+
+.control-box h4 {
+    margin-top: 0;
+}
+
+.control-box p {
+    margin-top: 10px;
+    margin-bottom: 0;
+    color: #555; /* Soft black for text */
+}
+
+#enableControls {
     margin-bottom: 10px;
-    font-weight: 600;
-    color: #333;
-}
-
-input[type="text"], select {
-    width: calc(100% - 16px);
-    padding: 10px;
-    margin: 8px 0;
-    display: block;
-    border: 2px solid #e1e1e1;
-    border-radius: 6px;
-    box-sizing: border-box;
-    transition: border-color 0.3s;
-}
-
-input[type="text"]:focus, select:focus {
-    border-color: #007bff;
-    outline: none;
-}
-
-input[type="checkbox"], input[type="radio"] {
-    cursor: pointer;
 }
 
 button {
-    background-color: #007bff;
-    color: white;
-    padding: 12px 25px;
-    margin: 8px 0;
+    background-color: #007bff; /* Primary blue for action buttons */
     border: none;
-    border-radius: 6px;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    margin: 10px;
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Darker shade of button color on hover */
 }
 
-.container, .student-select-container {
-    display: flex;
-    align-items: center;
-    gap: 20px; /* Adjusts the space between items in containers */
-}
-
-.student-select-container {
-    margin-bottom: 20px; /* Additional spacing */
-}
-
-.student-select-container label {
-    margin-bottom: 0; /* Override the general label style */
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-
-.nav-bar {
-    background-color: #007bff;
-    padding: 10px 20px;
-    color: #fff;
+li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 6px;
-    margin-bottom: 20px;
+    position: relative;
+    list-style: none;
+    padding: 10px;
+    color: #333; /* Dark grey for text */
+    border: 2px solid #007bff; /* Border color matches buttons */
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    background-color: #f8f9fa; /* Very light grey background for list items */
+    transition: all 0.3s ease; /* Smoother transition */
 }
 
-.nav-bar a {
-    color: #fff;
-    text-decoration: none;
-    padding: 8px 15px;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
+.buttons, .deleteButton {
+    width: auto; /* Adjust width automatically */
+    height: auto; /* Adjust height automatically */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* Center vertically */
+    right: 10px; /* Distance from the right edge */
+    display: inline-flex; /* Display inline-flex for button groups */
+    gap: 5px; /* Space between buttons */
 }
 
-.nav-bar a:hover {
-    background-color: #0056b3;
-}
-
-@media (max-width: 768px) {
-    .container, .student-select-container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .container img, .student-select-container label, .student-select-container select {
-        width: 100%; /* Ensures full width on smaller screens */
-    }
-
-    .nav-bar {
-        flex-direction: column;
-    }
-
-    .nav-bar a {
-        margin: 5px 0;
-    }
+/* Additional hover effects for list items */
+li:hover {
+    background-color: #e7f1ff; /* Light blue background on hover */
+    border-color: #0056b3; /* Darker border on hover */
 }
