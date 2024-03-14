@@ -36,6 +36,10 @@ function getParagraphInfo8() {
 	return readJSONFile("inputFiles/para8.json");
 }
 
+function getParagraphInfo9() {
+	return readJSONFile("inputFiles/para9.json");
+}
+
 
 function getParagraphInformation($rand){
 //$rand = 1;
@@ -63,6 +67,9 @@ function getParagraphInformation($rand){
 	      break;
 		case "8":
 	      $jsonData = getParagraphInfo8();
+	      break;
+		case "9":
+	      $jsonData = getParagraphInfo9();
 	      break;
 	  }
 }

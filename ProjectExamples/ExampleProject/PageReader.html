@@ -94,14 +94,15 @@ function displayRandomPicture(sel, team) {
             // Array of image URLs
             var images = [
                 "img/0.jpg",
-				"img/1.jpg",
+		"img/1.jpg",
                 "img/2.jpg",
                 "img/3.jpg",
                 "img/4.jpg",
                 "img/5.jpg",
                 "img/6.jpg",
                 "img/7.jpg",
-                "img/8.jpg"
+                "img/8.jpg",
+		"img/9.jpg"
             ];
             var randomIndex = sel; //Math.floor(Math.random() * images.length);
             var pictureContainer = document.getElementById("pictureContainer");
@@ -124,7 +125,7 @@ function check(chk) {
 		team = data.text;
 		displayRandomPicture(chk, team);
 	});
-	if(chk > 8)
+	if(chk > 10)
 		displayRandomPicture(0, "No-Team");
 }
 
