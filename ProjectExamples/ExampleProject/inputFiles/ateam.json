@@ -1,6 +1,10 @@
 {
     "students": [
         {
+            "name": "Muslh Alshahrani",
+            "id": 1
+        },
+        {
             "name": "Turki Aljohani",
             "id": 4
         },
@@ -9,12 +13,16 @@
             "id": 2
         },
         {
-            "name": "Muslh Alshahrani",
-            "id": 1
-        },
-        {
             "name": "Ryan Gadhi",
             "id": 3
+        },
+        {
+            "name": "Osama Alotaibi",
+            "id": 8
+        },
+        {
+            "name": "Abdullah Alabdullatif",
+            "id": 7
         },
         {
             "name": "Mohammed Aldawsari",
@@ -23,14 +31,6 @@
         {
             "name": "Mohammed Altukhais",
             "id": 6
-        },
-        {
-            "name": "Abdullah Alabdullatif",
-            "id": 7
-        },
-        {
-            "name": "Osama Alotaibi",
-            "id": 8
         }
     ]
 }

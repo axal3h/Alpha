@@ -23,7 +23,7 @@ h1, h2, h4 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
     margin-bottom: 20px;
     padding: 15px; /* Reduced padding for compactness */
-    width: 280px; /* Slightly reduced width for compactness */
+    width: auto; /* Slightly reduced width for compactness */
     background-color: #ffffff; /* Pure white background for contrast */
 }
 
@@ -59,7 +59,6 @@ button:hover {
 }
 
 li {
-    display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;

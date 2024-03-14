@@ -12,23 +12,17 @@
 
 <h1>Alpha Team Page</h1>
 
+<p>To edit the student list section click the following link: <a href="PageReader2.html" target="_self">Edit the student list</a></p>
+
+
 <p>The checkbox toggles the activation state between two controls (Dropdown, Radio Button).</p>
 <p>Entering text in the textbox and submitting will display each word on a separate line.</p>
 <p>Choosing a team member's name from the selector will present their corresponding image.</p>
-<p>The student list offers versatile management options, including editing names, reordering through drag-and-drop functionality, and the ability to add or remove students.</p>
-
 <label for="enableControls">Control checkbox:</label>
 <input type="checkbox" id="enableControls" onchange="toggleControls()">
     
 <div id="container">
-	<div class="control-box">
-        <h4>Student List</h4>
-			<ul id="studentList"></ul>
-        <h4>Add Student</h4>
-			<input type="text" id="newStudentName" placeholder="Enter student name">
-			<button onclick="addStudent()"><i class="fas fa-plus"></i> Add Student</button>
-			<button onclick="resetStudent()"><i class="fas fa-undo"></i> Reset List</button>
-    </div>
+
     <div class="control-box">
         <h4>Dropdown Information</h4>
         <select id="sel" onchange="loadPageInformation();">
@@ -198,7 +192,7 @@ function loadPageInformation1(){
     function fetchStudents() {
 		var url = "PageAPI.php?id=ateam";
 		$.getJSON(url, function (data) {
-				displayStudents(data.students);
+				//displayStudents(data.students);
 				loadPageInformation1();
 		});
     }

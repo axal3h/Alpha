@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+</head>
+<body>
+
+<h1>Alpha Team Page</h1>
+
+
+<p>To view the student list section click the following link: <a href="PageReader.html" target="_self">View the student list</a></p>
+<p>The student list offers versatile management options, including editing names, reordering through drag-and-drop functionality, and the ability to add or remove students.</p>
+<div id="container">
+	<div class="control-box">
+        <h4>Student List</h4>
+			<ul id="studentList"></ul>
+        <h4>Add Student</h4>
+			<input type="text" id="newStudentName" placeholder="Enter student name">
+			<button onclick="addStudent()"><i class="fas fa-plus"></i> Add Student</button>
+			<button onclick="resetStudent()"><i class="fas fa-undo"></i> Reset List</button>
+    </div>
+
+
+</div>
+
+<script>
+
+function displayWords() {
+	var inputText = document.getElementById("textInput").value;
+	var wordsArray = inputText.split(" ");
+	var wordListDiv = document.getElementById("wordList");
+	wordListDiv.innerHTML = "";
+	wordsArray.forEach(function(word) {
+		var wordDiv = document.createElement("div");
+		wordDiv.textContent = word;
+		wordListDiv.appendChild(wordDiv);
+	});
+}
+
+
+
+//////////////////////
+// Function to fetch student data from the server
+    function fetchStudents() {
+		var url = "PageAPI.php?id=ateam";
+		$.getJSON(url, function (data) {
+				displayStudents(data.students);
+		});
+    }
+
+    // Function to display students as a list
+    function displayStudents(students) {
+        var studentList = $('#studentList');
+        studentList.empty();
+
+        students.forEach(function(student) {
+			//var liTMP = '<li id='+student.id+'>';
+            var listItem = $('<li>').text(student.name);
+			listItem.attr('data-id', student.id); // Set data-id attribute
+            var editButton = $('<button>').text('Edit').click(function() {
+                var newName = prompt('Enter new name:', student.name);
+                if (newName !== null) {
+                    student.name = newName;
+                    updateStudent(student);
+                }
+            });
+			var deleteButton = $('<button>').text('Delete').click(function() {
+                if (confirm('Are you sure you want to delete this student?')) {
+                    deleteStudent(student);
+                }
+            });
+			
+            listItem.append('<div class="btn-group">');
+			listItem.append(editButton, deleteButton);
+            listItem.append('</div>');
+
+            if(student.id != 0)
+                studentList.append(listItem);
+        });
+
+        // Make the student list sortable
+        new Sortable(studentList.get(0), {
+            animation: 150,
+            onUpdate: function(event) {
+                saveStudentOrder();
+            }
+        });
+    }
+
+    // Function to add a new student
+    function addStudent() {
+        var newName = $('#newStudentName').val().trim();
+        if (newName !== '') {
+            var newStudent = { name: newName, id: Date.now() };
+            $.post('add_student.php', newStudent, function() {
+                fetchStudents();
+            });
+        }
+    }
+
+    // Function to update student data
+    function updateStudent(student) {
+        $.post('update_student.php', student, function() {
+            fetchStudents();
+        });
+    }
+
+    // Function to delete a student
+    function deleteStudent(student) {
+        $.post('delete_student.php', student, function() {
+            fetchStudents();
+        });
+    }
+	
+    // Function to reset student list
+    function resetStudent() {
+        $.post('reset_list.php', "", function() {
+            fetchStudents();
+        });
+    }
+
+    // Function to save the new order of students
+    function saveStudentOrder() {
+
+        var studentOrder = [];
+        $('#studentList li').each(function() {
+            var studentId = $(this).data('id');
+            studentOrder.push(studentId);
+        });
+
+        // Send the updated order to the server to save to JSON file
+        $.post('save_order.php', { studentOrder }, function() {
+            fetchStudents();
+        });
+    }
+
+//////////////////////
+ $(document).ready(function () {
+		fetchStudents();
+ });
+</script>
+</body>
+</html>
