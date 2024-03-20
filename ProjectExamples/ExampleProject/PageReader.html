@@ -68,26 +68,23 @@ function displayWords() {
 	});
 }
 
+
 function toggleControls() {
-	var checkbox = document.getElementById("enableControls");
-	var dropdown = document.getElementById("sel");
+    var checkbox = document.getElementById("enableControls");
+    var dropdown = document.getElementById("sel");
+    var radioButtons = document.querySelectorAll('input[type="radio"][name="studentRadio"]'); // This should match the name attribute in your HTML
 
-	var checkbox = document.getElementById("enableControls");
-	var dropdown = document.getElementById("sel");
-	var radioButtons = document.querySelectorAll('input[name="teamname"]');
-
-	if (checkbox.checked) {
-		dropdown.disabled = false;
-		radioButtons.forEach(function(radioButton) {
-			radioButton.disabled = true;
-		});
-	} else {
-		dropdown.disabled = true;
-		radioButtons.forEach(function(radioButton) {
-			radioButton.disabled = false;
-		});
-	}
-	
+    if (checkbox.checked) {
+        dropdown.disabled = false;
+        radioButtons.forEach(function(radioButton) {
+            radioButton.disabled = true;
+        });
+    } else {
+        dropdown.disabled = true;
+        radioButtons.forEach(function(radioButton) {
+            radioButton.disabled = false;
+        });
+    }
 }
 
 function displayRandomPicture(sel, team) {
